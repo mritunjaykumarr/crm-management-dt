@@ -23,7 +23,8 @@ export function useTasks() {
         .order('created_at', { ascending: false })
 
       if (!isAdmin && !isHR) {
-        query = query.eq('assigned_to', profile.id)
+        // STRICT PRIVACY: Only show tasks assigned to THIS specific employee
+        query = query.or(`assigned_to.eq.${profile.id},assigned_to.eq.${user.id}`)
       }
 
       const { data, error } = await query
@@ -37,7 +38,7 @@ export function useTasks() {
     } finally {
       setLoading(false)
     }
-  }, [user, isAdmin, isHR, addToast])
+  }, [user?.id, profile?.id, isAdmin, isHR, addToast])
 
   const addTask = async (task: Partial<Task>) => {
     if (!user) return

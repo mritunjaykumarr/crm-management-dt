@@ -41,9 +41,13 @@
   a, 
   [role="button"],
   .interactive-card,
+  .sidebar-item,
+  .nav-link,
+  tr,
   select,
   input[type="checkbox"],
-  input[type="radio"] {
+  input[type="radio"],
+  .cursor-pointer {
     cursor: pointer !important;
   }
 

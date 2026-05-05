@@ -30,7 +30,11 @@ export function useLeave() {
         .order('created_at', { ascending: false })
 
       if (!isAdmin && !isHR) {
+        // STRICT PRIVACY: Employees can ONLY see their own data
         query = query.eq('employee_id', profile.id)
+      } else {
+        // Admins can see everything, but we filter out the NULLs for cleaner UI
+        query = query.not('employees', 'is', null)
       }
 
       const { data, error } = await query
