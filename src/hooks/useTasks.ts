@@ -12,7 +12,7 @@ export function useTasks() {
 
   const fetchTasks = useCallback(async () => {
     // STRICT GUARD: Do not even try to fetch if we don't have a valid ID
-    if (!profile?.id || profile.id === 'undefined') {
+    if (!profile?.id || !user?.id || profile.id === 'undefined') {
       return;
     }
     setLoading(true)
