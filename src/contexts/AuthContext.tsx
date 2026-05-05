@@ -177,6 +177,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signUp = async (email: string, password: string, fullName: string, selectedRole: UserRole) => {
+    // 1. Check if email already exists in ANY of our profile tables
+    for (const table of ['administrators', 'hr_managers', 'employees']) {
+      const { data: existing } = await supabase.from(table).select('id').eq('email', email).maybeSingle()
+      if (existing) {
+        return { error: new Error('This email is already registered in the system.') }
+      }
+    }
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
