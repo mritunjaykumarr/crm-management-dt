@@ -141,7 +141,7 @@ export default function Auth() {
             </div>
           </div>
 
-          <Link to="/" className="flex items-center gap-1.5 text-slate-500 hover:text-blue-600 mb-8 transition-colors text-sm font-medium group">
+          <Link to="/" className="flex items-center gap-1.5 text-slate-500 hover:text-blue-600 mb-8 transition-colors text-sm font-medium group cursor-pointer">
             <ChevronLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             Back to Portals
           </Link>
@@ -149,48 +149,48 @@ export default function Auth() {
           <h2 className="text-2xl font-bold text-slate-900 capitalize">
             {urlRole} {isLogin ? 'Portal' : 'Registration'}
           </h2>
-          <p className="mt-1 text-sm text-slate-500 mb-8">
+          <p className="mt-1 text-sm text-slate-500 mb-8 font-medium">
             {isLogin
               ? `Enter your credentials to access the ${urlRole} dashboard`
               : `Create your ${urlRole} account to get started`}
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {!isLogin && (
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Full Name</label>
+                <div className="relative group">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300 group-focus-within:text-blue-500 transition-colors" />
                   <input
                     type="text"
                     value={fullName}
                     onChange={e => setFullName(e.target.value)}
-                    placeholder="John Doe"
-                    className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                    placeholder="e.g. John Doe"
+                    className="w-full rounded-2xl border-2 border-slate-100 bg-white py-4 pl-12 pr-4 text-sm text-slate-900 placeholder:italic placeholder:text-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Email Address</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300 group-focus-within:text-blue-500 transition-colors" />
                 <input
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="you@company.com"
+                  placeholder="name@company.com"
                   required
-                  className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                  className="w-full rounded-2xl border-2 border-slate-100 bg-white py-4 pl-12 pr-4 text-sm text-slate-900 placeholder:italic placeholder:text-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Password</label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300 group-focus-within:text-blue-500 transition-colors" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
@@ -198,43 +198,41 @@ export default function Auth() {
                   placeholder="••••••••"
                   required
                   minLength={6}
-                  className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-12 text-sm text-slate-900 placeholder-slate-400 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                  className="w-full rounded-2xl border-2 border-slate-100 bg-white py-4 pl-12 pr-12 text-sm text-slate-900 placeholder:text-slate-300 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all shadow-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-600 transition-colors cursor-pointer"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
 
-            {/* Role selection removed - default to employee for security */}
-
             <button
               type="submit"
               disabled={submitting}
-              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="w-full rounded-2xl bg-slate-900 py-4 text-sm font-black text-white shadow-xl shadow-slate-900/20 hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 cursor-pointer mt-4"
             >
               {submitting ? (
                 <span className="flex items-center justify-center gap-2">
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  {isLogin ? 'Signing in...' : 'Creating account...'}
+                  {isLogin ? 'AUTHENTICATING...' : 'CREATING ACCOUNT...'}
                 </span>
               ) : (
-                isLogin ? 'Sign In' : 'Create Account'
+                isLogin ? 'SIGN IN NOW' : 'CREATE ACCOUNT'
               )}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-slate-500">
-            {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
+          <p className="mt-8 text-center text-sm text-slate-500 font-medium">
+            {isLogin ? "New to Digi Captain?" : 'Already have an account?'}{' '}
             <button
               onClick={() => setIsLogin(!isLogin)}
-              className="font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              className="font-black text-blue-600 hover:text-blue-700 transition-colors cursor-pointer ml-1"
             >
-              {isLogin ? 'Sign up' : 'Sign in'}
+              {isLogin ? 'CREATE AN ACCOUNT' : 'SIGN IN INSTEAD'}
             </button>
           </p>
         </div>
