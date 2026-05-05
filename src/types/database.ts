@@ -2,6 +2,7 @@ export type UserRole = 'admin' | 'hr' | 'employee'
 
 export interface UserProfile {
   id: string
+  user_id: string
   email: string
   full_name: string
   avatar_url?: string
@@ -75,6 +76,7 @@ export interface LeaveRequest {
   reason: string
   status: 'pending' | 'approved' | 'rejected'
   approved_by?: string
+  admin_notes?: string
   created_at: string
   updated_at: string
 }

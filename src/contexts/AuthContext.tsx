@@ -9,7 +9,7 @@ interface AuthContextType {
   profile: UserProfile | null
   role: UserRole
   loading: boolean
-  signIn: (email: string, password: string) => Promise<{ error: Error | null }>
+  signIn: (email: string, password: string, requestedRole?: UserRole, masterKey?: string) => Promise<{ error: Error | null }>
   signUp: (email: string, password: string, fullName: string, role: UserRole) => Promise<{ error: Error | null }>
   signOut: () => Promise<void>
   isAdmin: boolean
@@ -107,6 +107,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setRole('employee')
       setProfile({
         id: userId,
+        user_id: userId,
         email: userEmail,
         full_name: userEmail.split('@')[0],
         role: 'employee',
